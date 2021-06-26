@@ -1,6 +1,7 @@
 ﻿using App.Data.Helpers;
 using App.Data.Model;
 using App.Data.Models;
+using App.Data.Models.Results;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -44,9 +45,9 @@ namespace App.Service.Extention
         #endregion
 
         #region 'Result'
-        public static LeadResult ToResult(this Lead entity)
+        public static Result ToResult(this Lead entity)
         {
-            LeadResult result = new LeadResult();
+            Result result = new Result();
             PropertyInfo[] sourceProperties = entity.GetType().GetProperties();
             PropertyInfo[] destinationProperties = result.GetType().GetProperties();
 
@@ -59,14 +60,13 @@ namespace App.Service.Extention
             return result;
         }
 
-        public static List<LeadResult> ToResult(this List<Lead> entities, int count)
+        public static List<Result> ToResult(this List<Lead> entities, int count)
         {
-            List<LeadResult> results = new List<LeadResult>();
-            LeadResult result = new LeadResult();
+            List<Result> results = new List<Result>();
+            Result result = new Result();
             foreach (var item in entities)
             {
                 result = item.ToResult();
-                result.TotalRecords = count;
                 results.Add(result);
             }
 

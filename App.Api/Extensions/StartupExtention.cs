@@ -28,7 +28,7 @@ namespace App.Api.Extensions
 
         public static void SetAuthentication(this IServiceCollection services, IConfigurationRoot configuration)
         {
-            var jwtTokenConfig = configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfig>();
+            var jwtTokenConfig = configuration.GetSection("jwtTokenConfig").Get<Data.Infrastructure.JwtTokenConfig>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
